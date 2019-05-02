@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/show_ocurrences"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/nav_show_ocurrences" />
+
+    <item
+        android:id="@+id/show_info"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="@string/nav_info" />
+
+</menu>
