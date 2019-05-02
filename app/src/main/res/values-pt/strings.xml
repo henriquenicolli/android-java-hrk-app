@@ -12,6 +12,10 @@
     <string name="menu_remove">Remover</string>
     <string name="menu_select_options">Selecione uma ação</string>
 
+    <string name="hint_author">Henrique Nicolli RA:1633120</string>
+    <string name="hint_university">UTFPR</string>
+    <string name="hint_description">Este aplicativo permite registrar ocorrências de crimas na sua cidade</string>
+
 
 
 

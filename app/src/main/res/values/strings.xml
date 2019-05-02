@@ -12,6 +12,10 @@
     <string name="menu_remove">Remove</string>
     <string name="menu_select_options">Select an action</string>
 
+    <string name="hint_author">Henrique Nicolli RA:1633120</string>
+    <string name="hint_university">UTFPR</string>
+    <string name="hint_description">This application allows you to record occurrences of crimes in your city</string>
+
 
 
 
