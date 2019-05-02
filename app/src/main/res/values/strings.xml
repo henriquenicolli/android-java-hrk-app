@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">ProjetoMobile</string>
+    <string name="app_name">ProjectMobile</string>
 
-    <string name="title_activity_main2">Mapa</string>
+    <string name="title_activity_main2">Map</string>
     <string name="title_activity_ocurrence_data">OcurrenceDataActivity</string>
 
-    <string name="nav_show_ocurrences">Mostrar Ocorrências</string>
-    <string name="nav_info">Informações</string>
+    <string name="nav_show_ocurrences">Show Ocurrences</string>
+    <string name="nav_info">Informations</string>
 
-    <string name="menu_show">Visualizar</string>
-    <string name="menu_edit">Editar</string>
-    <string name="menu_remove">Remover</string>
-    <string name="menu_select_options">Selecione uma ação</string>
+    <string name="menu_show">Show</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_remove">Remove</string>
+    <string name="menu_select_options">Select an action</string>
 
 
 
