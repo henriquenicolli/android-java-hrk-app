@@ -27,11 +27,11 @@
 
         <activity
             android:name=".com.henrique.projetomobile.activity.OcurrenceDataActivity"
-            android:label="@string/title_activity_main2"/>
+            android:label="@string/nav_data_ocurrences"/>
 
         <activity
             android:name=".com.henrique.projetomobile.activity.MainActivity"
-            android:label="@string/title_activity_main2"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
