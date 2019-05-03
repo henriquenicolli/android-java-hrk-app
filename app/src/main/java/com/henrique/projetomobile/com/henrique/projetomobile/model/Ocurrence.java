@@ -1,8 +1,8 @@
 package com.henrique.projetomobile.com.henrique.projetomobile.model;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class Ocurrence {
+public class Ocurrence implements Serializable {
 
     public int Id;
     public String Title;

@@ -13,11 +13,15 @@ import android.widget.Toast;
 import com.henrique.projetomobile.R;
 import com.henrique.projetomobile.com.henrique.projetomobile.model.Ocurrence;
 
+import java.io.Serializable;
+import java.util.List;
+
 public class OcurrenceDataActivity extends AppCompatActivity {
 
     Button BtnSave;
     EditText EdtTitle;
     EditText EdtDescription;
+    Ocurrence ocurrence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +34,52 @@ public class OcurrenceDataActivity extends AppCompatActivity {
         EdtDescription = (EditText) findViewById(R.id.txt_description);
 
 
+        Intent i = getIntent();
+        Ocurrence selectedOcurrence = (Ocurrence)i.getSerializableExtra("data");
+        if(selectedOcurrence != null)
+            ocurrence = selectedOcurrence;
+
+        loadData();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void loadData() {
+        if(ocurrence == null)
+            return;
+
+        EdtTitle.setText(ocurrence.Title);
+        EdtDescription.setText(ocurrence.Description);
     }
 
 
     public void Save(View view) {
-        String title = EdtTitle.getText().toString();
-        String description = EdtDescription.getText().toString();
+        if(ocurrence == null)
+            ocurrence = new Ocurrence();
 
-        Ocurrence ocurrence = new Ocurrence();
-        ocurrence.setTitle(title);
-        ocurrence.setDescription(description);
+        ocurrence.setTitle(EdtTitle.getText().toString());
+        ocurrence.setDescription(EdtDescription.getText().toString());
 
-        OcurrenceListActivity.Ocurrences.add(ocurrence);
+        if(OcurrenceListActivity.Ocurrences.contains(ocurrence)){
+            OcurrenceListActivity.Ocurrences.remove(ocurrence);
+            OcurrenceListActivity.Ocurrences.add(ocurrence);
+        }
+        else{
+            OcurrenceListActivity.Ocurrences.add(ocurrence);
+        }
+
+
 
         finish();
+    }
+
+    public static <E> boolean containsInstance(List<E> list, Class<? extends E> clazz) {
+        for (E e : list) {
+            if (clazz.isInstance(e)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
