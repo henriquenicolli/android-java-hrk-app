@@ -21,6 +21,7 @@ public class OcurrenceDataActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(InfoActivity.theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ocurrence_data);
 

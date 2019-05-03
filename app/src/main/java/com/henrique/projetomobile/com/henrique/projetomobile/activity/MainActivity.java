@@ -1,7 +1,10 @@
 package com.henrique.projetomobile.com.henrique.projetomobile.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -26,16 +29,20 @@ public class MainActivity extends AppCompatActivity {
 
     MapView mMapView;
     private GoogleMap googleMap;
+    private static final String KEY = "theme";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(InfoActivity.theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //new ThemeColors(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //toolbar.setTitleTextColor(Color.WHITE);
+        //setSupportActionBar(toolbar);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(KEY, Context.MODE_PRIVATE);
+        InfoActivity.isChecked = sharedPreferences.getBoolean(KEY, false);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadMap( savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
