@@ -27,6 +27,7 @@ public class OcurrenceListActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     public static List<Ocurrence> Ocurrences = new ArrayList<>();
+    public static Ocurrence selectedOcurrence = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,7 @@ public class OcurrenceListActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog(int position) {
-
-        final Ocurrence selectedOcurrence = Ocurrences.get(position);
+        selectedOcurrence = Ocurrences.get(position);
 
         final String[] options = {
                 getString(R.string.menu_edit),
