@@ -94,7 +94,8 @@ public class OcurrenceListActivity extends AppCompatActivity {
                 }
                 else if(options[which].equals(getString(R.string.menu_add_location))){
                     //add location to ocurrence
-
+                    Intent it = new Intent(OcurrenceListActivity.this, LocationActivity.class);
+                    startActivity(it);
                 }
             }
         });
