@@ -22,6 +22,7 @@ public class LocationDataActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(InfoActivity.theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

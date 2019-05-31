@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -41,7 +43,6 @@ public class OcurrenceListActivity extends AppCompatActivity {
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
 
 
         recyclerView.addOnItemTouchListener(
@@ -101,6 +102,7 @@ public class OcurrenceListActivity extends AppCompatActivity {
                 }
                 else if(options[which].equals(getString(R.string.menu_view_locations))){
                     Intent it = new Intent(OcurrenceListActivity.this, LocationListActivity.class);
+                    it.putExtra("ocurenceId", selectedOcurrence.id);
                     startActivity(it);
 
                 }
@@ -128,10 +130,12 @@ public class OcurrenceListActivity extends AppCompatActivity {
     }
 
 
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 this.finish();
+                break;
         }
 
         return true;

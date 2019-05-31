@@ -17,6 +17,9 @@ public interface LocationDao {
     @Query("SELECT * FROM location")
     List<Location> getAll();
 
+    @Query("SELECT * FROM location WHERE location.ocurrenceId = :id")
+    List<Location> getByOcurrenceId(int id);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertList(List<Location> locatons);
 

@@ -26,9 +26,11 @@ public class LocationListActivity extends AppCompatActivity {
 
     private List<Location> locations;
     private Location selectedLocation;
+    private int idOcurrence;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(InfoActivity.theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_list);
 
@@ -40,7 +42,8 @@ public class LocationListActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
+        Intent i = getIntent();
+        idOcurrence = i.getIntExtra("ocurenceId", 0);
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
@@ -61,7 +64,6 @@ public class LocationListActivity extends AppCompatActivity {
         final String[] options = {
                 getString(R.string.menu_edit),
                 getString(R.string.menu_remove),
-                getString(R.string.menu_view_locations)
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(LocationListActivity.this);
@@ -76,11 +78,6 @@ public class LocationListActivity extends AppCompatActivity {
                 }
                 else if(options[which].equals(getString(R.string.menu_remove))){
                     remove(selectedLocation);
-                }
-                else if(options[which].equals(getString(R.string.menu_view_locations))){
-                    Intent it = new Intent(LocationListActivity.this, LocationListActivity.class);
-                    startActivity(it);
-
                 }
             }
         });
@@ -110,7 +107,7 @@ public class LocationListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        locations = AppDatabase.getAppDatabase(LocationListActivity.this).locationDao().getAll();
+        locations = AppDatabase.getAppDatabase(LocationListActivity.this).locationDao().getByOcurrenceId(idOcurrence);
 
         mAdapter = new LocationAdapter(locations, LocationListActivity.this);
         recyclerView.setAdapter(mAdapter);
