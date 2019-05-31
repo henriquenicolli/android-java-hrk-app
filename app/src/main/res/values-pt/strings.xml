@@ -15,6 +15,9 @@
     <string name="menu_select_remove">Deseja realmente deletar esta ocorrência? Essa operação não pode ser desfeita.</string>
     <string name="menu_cancel">Cancelar</string>
     <string name="menu_add_location">Adicionar localização</string>
+    <string name="menu_city">Cidade</string>
+    <string name="menu_state">Estado</string>
+    <string name="menu_view_locations">Ver localizações</string>
 
     <string name="hint_author">Henrique Nicolli RA:1633120</string>
     <string name="hint_university">UTFPR</string>

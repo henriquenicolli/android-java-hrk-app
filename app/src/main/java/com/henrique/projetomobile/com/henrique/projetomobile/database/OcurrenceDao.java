@@ -20,6 +20,9 @@ public interface OcurrenceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertList(List<Ocurrence> ocurrences);
 
+    @Query("SELECT * FROM ocurrence WHERE id =:id")
+    Ocurrence getById(int id);
+
     @Insert
     void insert(Ocurrence ocurrence);
 

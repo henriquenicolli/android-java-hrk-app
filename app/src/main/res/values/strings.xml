@@ -15,6 +15,9 @@
     <string name="menu_select_remove">Do you really want to delete this occurrence? This operation can not be undone.</string>
     <string name="menu_cancel">Cancel</string>
     <string name="menu_add_location">Add location</string>
+    <string name="menu_city">City</string>
+    <string name="menu_state">State</string>
+    <string name="menu_view_locations">View locations</string>
 
     <string name="hint_author">Henrique Nicolli RA:1633120</string>
     <string name="hint_university">UTFPR</string>

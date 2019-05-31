@@ -41,6 +41,7 @@ public class OcurrenceDataActivity extends AppCompatActivity {
 
     private void loadData(Ocurrence selected) {
         isUpdate = true;
+        ocurrence = selected;
 
         EdtTitle.setText(selected.title);
         EdtDescription.setText(selected.description);
