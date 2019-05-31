@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.henrique.projetomobile.R;
+import com.henrique.projetomobile.com.henrique.projetomobile.database.AppDatabase;
 import com.henrique.projetomobile.com.henrique.projetomobile.model.Ocurrence;
 
 public class OcurrenceDataActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class OcurrenceDataActivity extends AppCompatActivity {
     EditText EdtTitle;
     EditText EdtDescription;
     Ocurrence ocurrence;
+    boolean isUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,36 +30,36 @@ public class OcurrenceDataActivity extends AppCompatActivity {
         EdtTitle = findViewById(R.id.txt_title);
         EdtDescription = findViewById(R.id.txt_description);
 
-
         Intent i = getIntent();
         Ocurrence selectedOcurrence = (Ocurrence)i.getSerializableExtra("data");
-        if(selectedOcurrence != null)
-            ocurrence = selectedOcurrence;
 
-        loadData();
+        if(selectedOcurrence != null)
+            loadData(selectedOcurrence);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void loadData() {
-        if(ocurrence == null)
-            return;
+    private void loadData(Ocurrence selected) {
+        isUpdate = true;
 
-        EdtTitle.setText(ocurrence.Title);
-        EdtDescription.setText(ocurrence.Description);
+        EdtTitle.setText(selected.title);
+        EdtDescription.setText(selected.description);
     }
 
 
     public void Save(View view) {
         if(ocurrence == null)
             ocurrence = new Ocurrence();
-        else
-            OcurrenceListActivity.Ocurrences.remove(OcurrenceListActivity.selectedOcurrence);
 
         ocurrence.setTitle(EdtTitle.getText().toString());
         ocurrence.setDescription(EdtDescription.getText().toString());
 
-        OcurrenceListActivity.Ocurrences.add(ocurrence);
+        /* save in database */
+        if(isUpdate)
+            AppDatabase.getAppDatabase(OcurrenceDataActivity.this).ocurrenceDao().update(ocurrence);
+         else
+            AppDatabase.getAppDatabase(OcurrenceDataActivity.this).ocurrenceDao().insert(ocurrence);
+
 
         finish();
     }

@@ -12,6 +12,9 @@
     <string name="menu_edit">Editar</string>
     <string name="menu_remove">Remover</string>
     <string name="menu_select_options">Selecione uma ação</string>
+    <string name="menu_select_remove">Deseja realmente deletar esta ocorrência? Essa operação não pode ser desfeita.</string>
+    <string name="menu_cancel">Cancelar</string>
+    <string name="menu_add_location">Adicionar localização</string>
 
     <string name="hint_author">Henrique Nicolli RA:1633120</string>
     <string name="hint_university">UTFPR</string>

@@ -12,6 +12,9 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_remove">Remove</string>
     <string name="menu_select_options">Select an action</string>
+    <string name="menu_select_remove">Do you really want to delete this occurrence? This operation can not be undone.</string>
+    <string name="menu_cancel">Cancel</string>
+    <string name="menu_add_location">Add location</string>
 
     <string name="hint_author">Henrique Nicolli RA:1633120</string>
     <string name="hint_university">UTFPR</string>

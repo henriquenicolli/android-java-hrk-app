@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.henrique.projetomobile.R;
 import com.henrique.projetomobile.com.henrique.projetomobile.adapter.OcurrenceAdapter;
 import com.henrique.projetomobile.com.henrique.projetomobile.adapter.RecyclerItemClickListener;
+import com.henrique.projetomobile.com.henrique.projetomobile.database.AppDatabase;
 import com.henrique.projetomobile.com.henrique.projetomobile.model.Ocurrence;
 
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class OcurrenceListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public static List<Ocurrence> Ocurrences = new ArrayList<>();
+    public List<Ocurrence> ocurrences = new ArrayList<>();
     public static Ocurrence selectedOcurrence = null;
 
     @Override
@@ -37,15 +38,16 @@ public class OcurrenceListActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         recyclerView = findViewById(R.id.my_recycler_view);
         recyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new OcurrenceAdapter(Ocurrences);
+        /* get ocurrences from database */
+        ocurrences = AppDatabase.getAppDatabase(OcurrenceListActivity.this).ocurrenceDao().getAll();
+
+        mAdapter = new OcurrenceAdapter(ocurrences);
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.addOnItemTouchListener(
@@ -69,11 +71,12 @@ public class OcurrenceListActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog(int position) {
-        selectedOcurrence = Ocurrences.get(position);
+        selectedOcurrence = ocurrences.get(position);
 
         final String[] options = {
                 getString(R.string.menu_edit),
-                getString(R.string.menu_remove)
+                getString(R.string.menu_remove),
+                getString(R.string.menu_add_location)
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(OcurrenceListActivity.this);
@@ -89,16 +92,31 @@ public class OcurrenceListActivity extends AppCompatActivity {
                 else if(options[which].equals(getString(R.string.menu_remove))){
                     remove(selectedOcurrence);
                 }
+                else if(options[which].equals(getString(R.string.menu_add_location))){
+                    //add location to ocurrence
+
+                }
             }
         });
         builder.show();
-
-
     }
 
-    private void remove(Ocurrence selectedOcurrence) {
-        Ocurrences.remove(selectedOcurrence);
-        mAdapter.notifyDataSetChanged();
+    private void remove(final Ocurrence selectedOcurrence) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(OcurrenceListActivity.this);
+        builder.setTitle(getString(R.string.menu_select_remove));
+        builder.setPositiveButton(R.string.menu_remove, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                ocurrences.remove(selectedOcurrence);
+                AppDatabase.getAppDatabase(OcurrenceListActivity.this).ocurrenceDao().remove(selectedOcurrence);
+                mAdapter.notifyDataSetChanged();
+            }
+        }).setNegativeButton(R.string.menu_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) { }
+        });
+        builder.show();
     }
 
 
@@ -106,7 +124,6 @@ public class OcurrenceListActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
                 this.finish();
-
         }
 
         return true;

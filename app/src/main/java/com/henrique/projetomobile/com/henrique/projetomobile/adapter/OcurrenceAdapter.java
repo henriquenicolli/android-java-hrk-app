@@ -41,8 +41,8 @@ public class OcurrenceAdapter extends RecyclerView.Adapter<OcurrenceAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.title.setText(Ocurrences.get(position).Title);
-        holder.observation.setText(Ocurrences.get(position).Description);
+        holder.title.setText(Ocurrences.get(position).title);
+        holder.observation.setText(Ocurrences.get(position).description);
     }
 
     @Override
